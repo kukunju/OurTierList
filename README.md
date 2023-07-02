@@ -1,24 +1,36 @@
-# README
+# OurTierList
+​
+## サイト概要
+### サイトテーマ
+自分のお気に入りをTier表という形で共有できるコミュニティサイト
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### テーマを選んだ理由
+自分の好きなものを誰かと共有したいと考えていたのですが、好きなことだからこそ文章にまとめるのは難しいと思います。
+もっと気軽に簡単に好きなものを表現でき、また、それに対する他の人の反応を知りたいと考えていました。<br>
+そこで、自分の好きなものをTier表という形で投稿できるようなSNSサービスがあれば面白いと考えました。<br>
+Tier表であれば直観的に作ることが出来、気軽に自分の「好き」を誰かと共有する喜びを提供できると考え、このテーマにしました。
+​
+### ターゲットユーザ
+- 好きなものがたくさんありそれらを誰かに共有したい人
+- 他の人たちがどんなことが好きなのか気になる人
+​
 
-Things you may want to cover:
+### 主な利用シーン
+- 自分が作ったTier表を投稿する時
+- Tier表に対する感想を知りたい時
+- 他の人が考えたTier表を知りたい時
+​
 
-* Ruby version
+## 設計書
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+​
+## 開発環境
+- OS：Linux(CentOS)
+- 言語：HTML,CSS,JavaScript,Ruby,SQL
+- フレームワーク：Ruby on Rails
+- JSライブラリ：jQuery
+- IDE：Cloud9
+​
+## 使用素材
+- フリーイラスト素材として以下を使用
+  - ICOOON MONO (https://icooon-mono.com/)
