@@ -1,0 +1,2 @@
+class ThemeTag < ApplicationRecord
+end

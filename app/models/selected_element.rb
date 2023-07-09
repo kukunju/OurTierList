@@ -1,0 +1,2 @@
+class SelectedElement < ApplicationRecord
+end

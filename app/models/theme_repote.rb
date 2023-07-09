@@ -1,0 +1,2 @@
+class ThemeRepote < ApplicationRecord
+end
