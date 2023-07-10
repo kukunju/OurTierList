@@ -11,6 +11,116 @@
   </head>
 
   <body>
-    <%= yield %>
+    <!-- Adminログイン時のheaderを返す-->
+    <% if admin_signed_in? %>
+      <header>
+          <nav class="navbar navbar-expand-lg">
+            <div class="container-fluid">
+              <a class="m-5 px-5 py-1" href="/" style="border-style:solid; border-width:2px; font-size: 24px; color: black;">
+                <strong>OurTierList</strong>
+              </a>
+
+              <div>
+                <ul class="navbar-nav ml-auto">
+                  <li class="nav-item ml-3" style="border-style:solid; border-width:2px;">
+                    <%= link_to "ユーザー", admin_root_path,class: 'nav-link', style: 'color: black;' %>
+                  </li>
+
+                  <li class="nav-item ml-3" style="border-style:solid; border-width:2px;">
+                    <%= link_to "テーマ", admin_themes_path,class: 'nav-link', style: 'color: black;' %>
+                  </li>
+
+                  <li class="nav-item ml-3" style="border-style:solid; border-width:2px;">
+                    <%= link_to "TierList", admin_tier_lists_path,class: 'nav-link', style: 'color: black;' %>
+                  </li>
+
+                  <li class="nav-item ml-3" style="border-style:solid; border-width:2px;">
+                    <%= link_to "通報", admin_theme_reports_path,class: 'nav-link', style: 'color: black;' %>
+                  </li>
+
+                  <li class="nav-item ml-3" style="border-style:solid; border-width:2px;">
+                    <%= link_to "ログアウト", destroy_admin_session_path, method: :delete,class: 'nav-link', style: 'color: black;' %>
+                  </li>
+                </ul>
+              </div>
+
+            </div>
+          </nav>
+        </header>
+
+    <!--userログイン状態の際に、表示したいheaderを記載 -->
+    <% elsif user_signed_in? %>
+      <header>
+        <nav class="navbar navbar-expand-lg">
+          <div class="container-fluid">
+            <a class="m-5 px-5 py-1" href="/" style="border-style:solid; border-width:2px; font-size: 24px; color: black;">
+              <strong>OurTierList</strong>
+            </a>
+
+            <div>
+              <p>ログイン中　<%= current_user.name %></p>
+            </div>
+
+            <div>
+              <ul class="navbar-nav ml-auto">
+                <li class="nav-item ml-3" style="border-style:solid; border-width:2px;">
+                  <%= link_to "マイページ", user_path(current_user), class: 'nav-link', style: 'color: black;' %>
+                </li>
+
+                <li class="nav-item ml-3" style="border-style:solid; border-width:2px;">
+                  <%= link_to "TierList", tier_lists_path, class: 'nav-link', style: 'color: black;'%>
+                </li>
+
+                <li class="nav-item ml-3" style="border-style:solid; border-width:2px;">
+                  <%= link_to "テーマ一覧", themes_path, class: 'nav-link', style: 'color: black;'%>
+                </li>
+
+                <li class="nav-item ml-3" style="border-style:solid; border-width:2px;">
+                  <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link', style: 'color: black;' %>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </header>
+
+    <!--adminでもuserでもログインしていない時に表示するheaderを記載-->
+    <% else %>
+      <header>
+        <nav class="navbar navbar-expand-lg">
+          <div class="container-fluid">
+            <a class="m-5 px-5 py-1" href="/" style="border-style:solid; border-width:2px; font-size: 24px; color: black;">
+              <strong>OurTierList</strong>
+            </a>
+
+            <div>
+              <ul class="navbar-nav ml-auto">
+                <li class="nav-item ml-3" style="border-style:solid; border-width:2px;">
+                  <%= link_to "About", about_path, class: 'nav-link', style: 'color: black;'%>
+                </li>
+
+                <li class="nav-item ml-3" style="border-style:solid; border-width:2px;">
+                  <%= link_to "TierList", tier_lists_path, class: 'nav-link', style: 'color: black;'%>
+                </li>
+
+                <li class="nav-item ml-3" style="border-style:solid; border-width:2px;">
+                  <%= link_to "新規登録", new_user_registration_path, class: 'nav-link', style: 'color: black;'%>
+                </li>
+
+                <li class="nav-item ml-3" style="border-style:solid; border-width:2px;">
+                  <%= link_to "ログイン", new_user_session_path, class: 'nav-link', style: 'color: black;'%>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </header>
+    <% end %>
   </body>
+  <main style="border-top: 2px solid black; border-bottom: 2px solid black;">
+    <%= yield %>
+  </main>
+  <footer style="height: 100px;">
+
+  </footer>
 </html>

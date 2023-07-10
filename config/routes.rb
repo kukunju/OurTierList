@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  namespace :admin do
+    get 'tier_lists/show'
+    get 'tier_lists/index'
+  end
   # 管理者用
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
     sessions: "admin/sessions"
@@ -9,15 +13,16 @@ Rails.application.routes.draw do
     root to: "homes#top"
     resources :users,           only: [:edit, :update]
     resources :themes,          only: [:index, :show, :update]
+    resources :tier_lists,      only: [:index, :show]
     resources :theme_reports,   only: [:index, :update]
     resources :comment_reports, only: [:index, :update]
   end
 
 
   # 顧客用
-  devise_for :users,skip: [:passwords], controllers: {
-    registrations: "public/registrations",
-    sessions: 'public/sessions'
+  devise_for :users, controllers: {
+    registrations: "user/registrations",
+    sessions: 'user/sessions'
   }
 
 
