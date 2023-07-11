@@ -13,7 +13,7 @@ class User::ThemesController < ApplicationController
   if @theme.save
     @theme.save_tag(tag_list)
     @theme.save_elements(element_list)  # add this line
-    redirect_to new_tier_list_path, notice: 'テーマが正常に作成されました'
+    redirect_to new_theme_tier_list_path(@theme.id), notice: 'テーマが正常に作成されました'
   else
     render :new
   end

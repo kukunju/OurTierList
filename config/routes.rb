@@ -33,8 +33,10 @@ Rails.application.routes.draw do
     get "/search" => "searches#search"
 
     resources :favorites, only: [:create, :destroy]
-    resources :themes, only: [:new, :create, :index]
-    resources :tier_lists
+    resources :themes, only: [:new, :create, :index] do
+      resources :tier_lists, only: [:new]
+    end
+    resources :tier_lists,except: [:new]
     resources :comments, only: [:create, :destroy]
 
     resources :users, only: [:show, :edit, :update] do
