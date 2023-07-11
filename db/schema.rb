@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_07_09_182809) do
+ActiveRecord::Schema.define(version: 2023_07_11_043406) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -96,9 +96,10 @@ ActiveRecord::Schema.define(version: 2023_07_09_182809) do
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_tags_on_name", unique: true
   end
 
-  create_table "theme_repotes", force: :cascade do |t|
+  create_table "theme_reports", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "theme_id", null: false
     t.string "reason", null: false
@@ -112,6 +113,7 @@ ActiveRecord::Schema.define(version: 2023_07_09_182809) do
     t.integer "tag_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["theme_id", "tag_id"], name: "index_theme_tags_on_theme_id_and_tag_id", unique: true
   end
 
   create_table "themes", force: :cascade do |t|

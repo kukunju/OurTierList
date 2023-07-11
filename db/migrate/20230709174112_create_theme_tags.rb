@@ -7,5 +7,8 @@ class CreateThemeTags < ActiveRecord::Migration[6.1]
 
       t.timestamps
     end
+
+    add_index :theme_tags, [:theme_id,:tag_id],unique: true
+
   end
 end

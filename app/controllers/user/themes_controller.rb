@@ -1,7 +1,29 @@
 class User::ThemesController < ApplicationController
   def new
+    @theme = Theme.new
+    @theme.elements.build
   end
 
-  def index
+  def create
+  @theme = Theme.new(theme_params)
+  @theme.user_id = current_user.id
+  tag_list = params[:theme][:tag_names].split(',')
+  element_list = params[:theme][:element_names].split(',')
+
+  if @theme.save
+    @theme.save_tag(tag_list)
+    @theme.save_elements(element_list)  # add this line
+    redirect_to new_tier_list_path, notice: 'テーマが正常に作成されました'
+  else
+    render :new
   end
 end
+
+private
+
+def theme_params
+  params.require(:theme).permit(:name, :tier)
+end
+
+end
+
