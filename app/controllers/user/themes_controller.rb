@@ -22,7 +22,7 @@ end
 private
 
 def theme_params
-  params.require(:theme).permit(:name, :tier)
+  params.require(:theme).permit(:name)
 end
 
 end
