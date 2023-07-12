@@ -9,7 +9,9 @@ import * as ActiveStorage from "@rails/activestorage"
 
 import "channels"
 
-import 'jquery'
+require('jquery');
+require("jquery-ui/ui/widgets/datepicker");
+
 import "popper.js";
 import "bootstrap";
 import "../stylesheets/application";

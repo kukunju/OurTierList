@@ -1,0 +1,12 @@
+console.log("JavaScript is working!");
+$(function() {
+  $( ".element" ).draggable();
+  $( ".tier" ).droppable({
+    drop: function( event, ui ) {
+      var tier_id = $(this).attr('id');
+      var element_id = ui.draggable.attr('id');
+      // ここでAjaxを使用してサーバにtier_idとelement_idを送ります
+      // その後データベースを更新します
+    }
+  });
+});

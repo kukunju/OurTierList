@@ -22,10 +22,14 @@
   <%= render 'tier_list', theme: @theme %>
 </div>
 
+<script>
+   alert('jQuery UIのバージョン:' + $.ui.version);
 
-<p>稼働テスト（稼働してない）</p>
+</script>
 <script type="text/javascript">
-  $(document).ready(function() {
-    $("p").text("jQuery稼働テスト(稼働中)");
+  $.fn.jquery
+  console.log("JavaScript is working!");
+  $(function() {
+    $('.datepicker').datepicker();
   });
 </script>
