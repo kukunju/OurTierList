@@ -7,8 +7,21 @@
       <td>テーマ名</td>
       <td><%= @theme.name %></td>
     </tr>
+    <tr>
+      <td>タグ</td>
+      <td>
+        <% @theme.tags.each do |tag| %>
+          <%=tag.name%>,
+        <% end %>
+      </td>
+    </tr>
   </table>
 </div>
+
+<div>
+  <%= render 'tier_list', theme: @theme %>
+</div>
+
 
 <p>稼働テスト（稼働してない）</p>
 <script type="text/javascript">
