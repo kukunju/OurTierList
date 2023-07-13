@@ -1,28 +1,34 @@
-<table>
-    <tr>
-      <td class="tier bg-danger" id='tier1'>Tier1</td>
-      <td class="tier_elements table-danger" id='tier1_elements'></td>
+<table class="container">
+  
+    <tr id='tier1'>
+      <td class="tier bg-danger">Tier1</td>
+      <td class="tier_elements row m-0 table-danger" id='tier1_elements'></td>
     </tr>
-    <tr>
-      <td class="tier bg-danger" id='tier2'>Tier2</td>
-      <td class="tier_elements table-danger" id='tier2_elements'></td>
+    
+    <tr id='tier2'>
+      <td class="tier bg-primary">Tier2</td>
+      <td class="tier_elements row m-0 table-primary" id='tier2_elements'></td>
     </tr>
-    <tr>
-      <td class="tier bg-danger" id='tier3'>Tier3</td>
-      <td class="tier_elements table-danger" id='tier3_elements'></td>
+    
+    <tr id='tier3'>
+      <td class="tier bg-warning">Tier3</td>
+      <td class="tier_elements row m-0 table-warning" id='tier3_elements'></td>
     </tr>
-    <tr>
-      <td class="tier bg-danger" id='tier4'>Tier4</td>
-      <td class="tier_elements table-danger" id='tier4_elements'></td>
+    
+    <tr id='tier4'>
+      <td class="tier bg-secondary">Tier4</td>
+      <td class="tier_elements row m-0 table-secondary" id='tier4_elements'></td>
     </tr>
-      <tr>
-    <td>Elements</td>
-    <td class="row m-0">
-      <% @theme.elements.each do |element| %>
-        <div class="m-1 bg-light element" id="<%= element.id %>">
-          <%= element.name %>
-        </div>
-      <% end %>
-    </td>
-  </tr>
+    
+    <tr>
+      <td>要素</td>
+      <td class="row m-0">
+        <% @theme.elements.each do |element| %>
+          <div class="m-1 bg-light element" id="<%= element.id %>">
+            <%= element.name %>
+          </div>
+        <% end %>
+      </td>
+    </tr>
 </table>
+

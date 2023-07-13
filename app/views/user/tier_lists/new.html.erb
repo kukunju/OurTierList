@@ -1,35 +1,41 @@
 <h1>User::TierLists#new</h1>
 
-
-<div>
-  <table>
-    <tr>
-      <td>テーマ名</td>
-      <td><%= @theme.name %></td>
-    </tr>
-    <tr>
-      <td>タグ</td>
-      <td>
-        <% @theme.tags.each do |tag| %>
-          <%=tag.name%>,
-        <% end %>
-      </td>
-    </tr>
+<div class="container">
+  <div>
+    <table>
+      <tr>
+        <td>テーマ名</td>
+        <td><%= @theme.name %></td>
+      </tr>
+      <tr>
+        <td>タグ</td>
+        <td>
+          <% @theme.tags.each do |tag| %>
+            <%=tag.name%>,
+          <% end %>
+        </td>
+      </tr>
   </table>
+  </div>
+
+  <div>
+    <%= render 'tier_list', theme: @theme %>
+  </div>
+
+  <%= form_with model: [@theme, @tier_list] do |f| %>
+  
+    <div>
+      <label for="tier_list_comment">コメント</label><br>
+      <%= f.text_area :comment %>
+    </div>
+    
+    
+
+    <%= f.submit "Create TierList",data: { disable_with: '送信中' } %>
+
+  <% end %>
+
+
 </div>
 
-<div>
-  <%= render 'tier_list', theme: @theme %>
-</div>
 
-<script>
-   alert('jQuery UIのバージョン:' + $.ui.version);
-
-</script>
-<script type="text/javascript">
-  $.fn.jquery
-  console.log("JavaScript is working!");
-  $(function() {
-    $('.datepicker').datepicker();
-  });
-</script>

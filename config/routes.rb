@@ -34,9 +34,10 @@ Rails.application.routes.draw do
 
     resources :favorites, only: [:create, :destroy]
     resources :themes, only: [:new, :create, :index] do
-      resources :tier_lists, only: [:new]
+      resources :tier_lists, only: [:new, :create]
     end
-    resources :tier_lists,except: [:new]
+
+    resources :tier_lists,except: [:new, :create, :destroy]
     resources :comments, only: [:create, :destroy]
 
     resources :users, only: [:show, :edit, :update] do
