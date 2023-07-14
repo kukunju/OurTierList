@@ -19,17 +19,17 @@
   </div>
 
   <div>
-    <%= render 'tier_list', theme: @theme %>
+    <%= render 'tier_list_edit', theme: @theme %>
   </div>
 
   <%= form_with model: [@theme, @tier_list] do |f| %>
-  
+
     <div>
       <label for="tier_list_comment">コメント</label><br>
       <%= f.text_area :comment %>
     </div>
-    
-    
+
+
 
     <%= f.submit "Create TierList",data: { disable_with: '送信中' } %>
 

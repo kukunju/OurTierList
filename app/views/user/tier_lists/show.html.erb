@@ -1,2 +1,30 @@
 <h1>User::TierLists#show</h1>
 <p>Find me in app/views/user/tier_lists/show.html.erb</p>
+
+
+<div class="container d-flex justify-content-center">
+  <table class="row border">
+    <tr>
+      <td class="pr-5">作者</td>
+      <td><%= @tier_list.user.name %></td>
+    </tr>
+    <tr>
+      <td >テーマ名</td>
+      <td><%= @tier_list.theme.name %></td>
+    </tr>
+    <tr>
+      <td>投稿日時</td>
+      <td><%= @tier_list.created_at.strftime("%Y/%m/%d %H:%M:%S") %></td>
+    </tr>
+    <tr>
+      <td>コメント</td>
+      <td><%= @tier_list.comment %></td>
+    </tr>
+  </table>
+</div>
+<div class="my-5">
+  <%= render "tier_list_show", tier_list: @tier_list %>
+</div>
+
+
+

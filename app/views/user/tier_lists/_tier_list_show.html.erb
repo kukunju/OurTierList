@@ -1,0 +1,47 @@
+  <table class="container">
+
+    <tr id='tier1'>
+      <td class="tier bg-danger">Tier1</td>
+      <td class="tier_elements row m-0 table-danger">
+        <% tier_list.selected_elements.where(tier: 1).each do |selected_element| %>
+          <div class="m-1 bg-light">
+            <%= selected_element.element.name %>
+          </div>
+        <% end %>
+      </td>
+    </tr>
+
+    <tr id='tier2'>
+      <td class="tier bg-primary">Tier2</td>
+      <td class="tier_elements row m-0 table-primary">
+        <% tier_list.selected_elements.where(tier: 2).each do |selected_element| %>
+          <div class="m-1 bg-light">
+            <%= selected_element.element.name %>
+          </div>
+        <% end %>
+      </td>
+    </tr>
+
+    <tr id='tier3'>
+      <td class="tier bg-warning">Tier3</td>
+      <td class="tier_elements row m-0 table-warning">
+        <% tier_list.selected_elements.where(tier: 3).each do |selected_element| %>
+          <div class="m-1 bg-light">
+            <%= selected_element.element.name %>
+          </div>
+        <% end %>
+      </td>
+    </tr>
+
+    <tr id='tier4'>
+      <td class="tier bg-secondary">Tier4</td>
+      <td class="tier_elements row m-0 table-secondary">
+        <% tier_list.selected_elements.where(tier: 4).each do |selected_element| %>
+          <div class="m-1 bg-light">
+            <%= selected_element.element.name %>
+          </div>
+        <% end %>
+      </td>
+    </tr>
+
+  </table>
