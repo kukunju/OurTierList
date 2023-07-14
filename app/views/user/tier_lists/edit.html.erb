@@ -1,2 +1,40 @@
-<h1>User::TierLists#edit</h1>
-<p>Find me in app/views/user/tier_lists/edit.html.erb</p>
+<h1>TierList編集</h1>
+
+<div class="container">
+  <div>
+    <table>
+      <tr>
+        <td>テーマ名</td>
+        <td><%= @tier_list.theme.name %></td>
+      </tr>
+      <tr>
+        <td>タグ</td>
+        <td>
+          <% @tier_list.theme.tags.each do |tag| %>
+            <%=tag.name%>,
+          <% end %>
+        </td>
+      </tr>
+  </table>
+  </div>
+
+  <div>
+    <%= javascript_pack_tag 'tier_list' %>
+    <%= render 'tier_list_show', tier_list: @tier_list %>
+  </div>
+
+  <%= form_with model: @tier_list do |f| %>
+
+    <div>
+      <label for="tier_list_comment">コメント</label><br>
+      <%= f.text_area :comment %>
+    </div>
+
+
+
+    <%= f.submit "TierListを更新",data: { disable_with: '送信中' } %>
+
+  <% end %>
+
+
+</div>

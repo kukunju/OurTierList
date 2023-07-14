@@ -1,2 +1,19 @@
-<h1>User::Users#leave</h1>
-<p>Find me in app/views/user/users/leave.html.erb</p>
+
+<div class="container mx-auto col-8 " style="margin-top: 100px; margin-bottom: 200px;">
+  <p style="text-align: center;">
+    <strong>本当に退会しますか？</strong>
+  </p>
+
+  <p style="text-align: center;">
+    退会すると、ログインできなくなります。</br>
+    今まで作成したTierListも閲覧が出来なくなります。</br>
+    退会する場合は、「退会する」をクリックしてください。</br>
+  </p>
+  <div class="row justify-content-center p-0">
+    <div class="p-0">
+      <%= link_to "退会しない", user_path(current_user.id),class: "btn btn-success",style: 'width: 200px; margin-right: 50px;' %>
+      <%= link_to "退会する", '/users/withdrawal',method: :patch, class: "btn btn-danger",style: 'width: 200px;' %>
+    </div>
+
+  </div>
+</div>

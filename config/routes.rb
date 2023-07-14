@@ -45,6 +45,7 @@ Rails.application.routes.draw do
         get 'leave'
         patch 'withdrawal'
       end
+      get 'favorite'
     end
 
     resources :theme_reports, only: [:create] do

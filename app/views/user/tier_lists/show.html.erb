@@ -1,7 +1,3 @@
-<h1>User::TierLists#show</h1>
-<p>Find me in app/views/user/tier_lists/show.html.erb</p>
-
-
 <div class="container d-flex justify-content-center">
   <table class="row border">
     <tr>
@@ -22,8 +18,17 @@
     </tr>
   </table>
 </div>
+
 <div class="my-5">
   <%= render "tier_list_show", tier_list: @tier_list %>
+
+  <div class="d-flex justify-content-end">
+    <% if @tier_list.user.id == current_user.id %>
+      <%= link_to "編集", edit_tier_list_path(@tier_list.id) ,class: "btn btn-info col-2" %>
+      <%= link_to "削除まだ", edit_tier_list_path(@tier_list.id) ,class: "btn btn-info col-2" %>
+    <% end %>
+  </div>
+
 </div>
 
 

@@ -2,6 +2,14 @@ $(function() {
   // 保持するデータ
   var selected_elements = [];
 
+  $(".element").each(function() {
+    selected_elements.push({
+      tier_list_id: null,
+      element_id: $(this).attr('id'),
+      tier: $(this).data('tier'),
+    });
+  });
+
 
 
   // ドラッグ

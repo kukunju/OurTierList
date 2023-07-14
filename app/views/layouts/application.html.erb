@@ -8,6 +8,8 @@
 
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <script src="https://kit.fontawesome.com/840e7c48b7.js" crossorigin="anonymous"></script>
   </head>
 
   <body id="page_top">
@@ -130,7 +132,8 @@
     <% end %>
   </body>
 
-  <main style="border-top: 2px solid black; border-bottom: 2px solid black;">
+  <div class="text-success mx-auto "><%= flash[:notice] %></div>
+  <main class="py-3" style="border-top: 2px solid black; border-bottom: 2px solid black;">
     <%= yield %>
   </main>
 

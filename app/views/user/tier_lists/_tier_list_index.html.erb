@@ -1,0 +1,22 @@
+<!-- TierList一覧機能 -->
+
+<div class="col-md-9 d-flex flex-column">
+
+  <% @tier_lists.each do |tier_list| %>
+    <div class="card mb-3">
+      <div class="row no-gutters">
+        <div class="col-md-8">
+          <%= render "user/tier_lists/tier_list_show", tier_list: tier_list %>
+        </div>
+        <div class="col-md-4">
+          <div class="card-body">
+            <h5 class="card-title"><%= tier_list.theme.name %></h5>
+            <p class="card-text"><%= tier_list.comment %></p>
+            <%= link_to "詳細", tier_list_path(tier_list.id),class: "btn btn-outline-secondary" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+</div>
