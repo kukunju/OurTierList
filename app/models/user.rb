@@ -8,7 +8,7 @@ class User < ApplicationRecord
 
   has_many :themes
   has_many :tier_lists
-  has_many :favolites
+  has_many :favorites
   has_many :comments
   has_many :comment_report
   has_many :theme_report

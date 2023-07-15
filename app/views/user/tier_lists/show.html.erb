@@ -22,7 +22,10 @@
 <div class="my-5">
   <%= render "tier_list_show", tier_list: @tier_list %>
 
+
   <div class="d-flex justify-content-end">
+    <%= render "user/favorites/favorite_btn", tier_list: @tier_list %>
+    <%= link_to "このテーマでTierListを作成", new_theme_tier_list_path(@tier_list.theme.id), class: "btn btn-info col-2" %>
     <% if @tier_list.user.id == current_user.id %>
       <%= link_to "編集", edit_tier_list_path(@tier_list.id) ,class: "btn btn-info col-2" %>
       <%= link_to "削除まだ", edit_tier_list_path(@tier_list.id) ,class: "btn btn-info col-2" %>

@@ -7,5 +7,9 @@ class TierList < ApplicationRecord
   has_many :favorites
   has_many :selected_elements
 
+  def favorited_by?(user)
+    favorites.exists?(user_id: user.id)
+  end
+
 
 end

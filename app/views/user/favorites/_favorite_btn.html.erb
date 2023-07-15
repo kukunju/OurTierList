@@ -1,0 +1,9 @@
+<% if tier_list.favorited_by?(current_user) %>
+  <%= link_to tier_list_favorites_path(tier_list), method: :delete, remote:true do %>
+    ♥<%= tier_list.favorites.count %>
+  <% end %>
+  <% else %>
+  <%= link_to tier_list_favorites_path(tier_list), method: :post, remote:true do %>
+   ♡<%= tier_list.favorites.count %>
+  <% end %>
+<% end %>

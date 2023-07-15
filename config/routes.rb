@@ -32,13 +32,15 @@ Rails.application.routes.draw do
     get "/about" => "homes#about"
     get "/search" => "searches#search"
 
-    resources :favorites, only: [:create, :destroy]
     resources :themes, only: [:new, :create, :index] do
       resources :tier_lists, only: [:new, :create]
     end
 
-    resources :tier_lists,except: [:new, :create, :destroy]
-    resources :comments, only: [:create, :destroy]
+    resources :tier_lists,except: [:new, :create] do
+      resources :comments, only: [:create, :destroy]
+      resource :favorites, only: [:create, :destroy]
+    end
+
 
     resources :users, only: [:show, :edit, :update] do
       collection do
