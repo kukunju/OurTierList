@@ -10,6 +10,14 @@ class Theme < ApplicationRecord
 
 
   accepts_nested_attributes_for :elements, allow_destroy: true, reject_if: :all_blank
+  
+  scope :new_order, -> { order(created_at: :desc) }
+  scope :old_order, -> { order(created_at: :asc) }
+  scope :order_many_tier_list, -> {
+    left_joins(:tier_lists)
+      .group('themes.id')
+      .order('COUNT(tier_lists.id) DESC')
+  }
 
 def save_tag(sent_tags)
 

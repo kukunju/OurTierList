@@ -19,6 +19,20 @@ class User::ThemesController < ApplicationController
     end
   end
 
+  def index
+    if params[:new_order]
+      @themes = Theme.new_order
+    elsif params[:old_order]
+      @themes = Theme.old_order
+    elsif params[:order_many_tier_list]
+      @themes = Theme.order_many_tier_list
+    else
+      @themes = Theme.all
+    end
+
+    @user = User.find(current_user.id)
+  end
+
 private
 
 def theme_params

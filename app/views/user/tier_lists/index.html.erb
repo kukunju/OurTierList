@@ -1,2 +1,6 @@
-<h1>User::TierLists#index</h1>
-<p>Find me in app/views/user/tier_lists/index.html.erb</p>
+<div class="container">
+  <div class="row">
+    <%= render "user/users/user_profile", user: @user %>
+    <%= render "user/tier_lists/tier_list_index", tier_lists: @tier_lists %>
+  </div>
+</div>

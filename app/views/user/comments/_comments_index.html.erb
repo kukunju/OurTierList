@@ -1,0 +1,30 @@
+
+<dir id="comments-index">
+  <% flash.each do |message_type, message| %>
+    <%= message %>
+  <% end %>
+
+  <%= form_with model: [tier_list, Comment.new], local: false do |f| %>
+  <div>
+    <%= f.text_field :comment, class: "form-control" %>
+    <%= f.submit "送信", class: "btn btn-success", data: { disable_with: '送信中' } %>
+  </div>
+<% end %>
+
+  <table class="table table-hover">
+    <tbody>
+      <% comments.reverse.each do |comment| %>
+        <tr>
+          <td><%= comment.user.name %></td>
+          <td><a href="<%= user_path(comment.user.id) %>"><%= image_tag comment.user.get_profile_image(50,50) %></a></td>
+          <td><%= comment.comment %></td>
+          <td>
+            <% if comment.user == current_user %>
+              <%= link_to "削除", tier_list_comment_path(comment.tier_list, comment), method: :patch, remote: true, class: "btn btn-danger", role: "button", data: { confirm: "本当に削除しますか？" } %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</dir>

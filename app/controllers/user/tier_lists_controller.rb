@@ -20,7 +20,7 @@ class User::TierListsController < ApplicationController
           tier: se[:tier]
         )
       end
-      redirect_to @tier_list, notice: 'Tier list was successfully created.'
+      redirect_to @tier_list, notice: 'TierListを保存しました.'
     else
       render :new
     end
@@ -31,7 +31,7 @@ class User::TierListsController < ApplicationController
   def edit
     @tier_list = TierList.find(params[:id])
   end
-  
+
   def update
     params[:selected_elements] = JSON.parse(params[:selected_elements])
     @tier_list = TierList.find(params[:id])
@@ -44,7 +44,7 @@ class User::TierListsController < ApplicationController
           tier: se[:tier]
         )
       end
-      redirect_to @tier_list, notice: 'Tier list was successfully updated.'
+      redirect_to @tier_list, notice: 'TierListを保存しました.'
     else
       render :edit
     end
@@ -53,9 +53,21 @@ class User::TierListsController < ApplicationController
 
   def show
     @tier_list = TierList.find(params[:id])
+    @comments = @tier_list.comments.where(is_deleted: false)
   end
 
   def index
+    if params[:new_order]
+      @tier_lists = TierList.new_order
+    elsif params[:old_order]
+      @tier_lists = TierList.old_order
+    elsif params[:order_many_favorites]
+      @tier_lists = TierList.order_many_favorites
+    else
+      @tier_lists = TierList.all
+    end
+
+    @user = User.find(current_user.id)
   end
 
   private

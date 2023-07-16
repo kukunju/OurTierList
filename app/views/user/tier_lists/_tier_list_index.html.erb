@@ -1,8 +1,12 @@
 <!-- TierList一覧機能 -->
 
 <div class="col-md-9 d-flex flex-column">
-
-  <% @tier_lists.each do |tier_list| %>
+  <p>
+    <%= link_to '新しい順', tier_lists_path(new_order: "true") %>
+    |<%= link_to '古い順', tier_lists_path(old_order: "true") %>
+    |<%= link_to 'いいねが多い順', tier_lists_path(order_many_favorites: "true") %>
+  </p>
+  <% tier_lists.each do |tier_list| %>
     <div class="card mb-3">
       <div class="row no-gutters">
         <div class="col-md-8">
@@ -12,7 +16,11 @@
           <div class="card-body">
             <h5 class="card-title"><%= tier_list.theme.name %></h5>
             <p class="card-text"><%= tier_list.comment %></p>
+            <%= link_to user_path(tier_list.user.id) do %><%= tier_list.user.name %><% end %>
             <%= link_to "詳細", tier_list_path(tier_list.id),class: "btn btn-outline-secondary" %>
+            <div id="favorite-btn-<%= tier_list.id %>" >
+              <%= render "user/favorites/favorite_btn", tier_list: tier_list %>
+            </div>
           </div>
         </div>
       </div>
