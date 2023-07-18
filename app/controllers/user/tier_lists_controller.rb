@@ -67,7 +67,6 @@ class User::TierListsController < ApplicationController
       @tier_lists = TierList.all
     end
 
-    @user = User.find(current_user.id)
   end
 
   private

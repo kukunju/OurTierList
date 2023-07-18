@@ -1,48 +1,22 @@
 <!-- TierList表示・編集 -->
+<% tiers = [
+  {tier_class: 'tier bg-danger', elements_class: 'tier_elements row m-0 table-danger', text: 'Tier1', number: 1},
+  {tier_class: 'tier bg-primary', elements_class: 'tier_elements row m-0 table-primary', text: 'Tier2', number: 2},
+  {tier_class: 'tier bg-warning', elements_class: 'tier_elements row m-0 table-warning', text: 'Tier3', number: 3},
+  {tier_class: 'tier bg-secondary', elements_class: 'tier_elements row m-0 table-secondary', text: 'Tier4', number: 4},
+] %>
+
 <table class="container">
-
-  <tr id='tier1'>
-    <td class="tier bg-danger">Tier1</td>
-    <td class="tier_elements row m-0 table-danger" id='tier1_elements'>
-      <% tier_list.selected_elements.where(tier: 1).each do |selected_element| %>
-        <div class="m-1 bg-light element" id="<%= selected_element.element.id %>" data-tier="<%= selected_element.tier %>">
-          <%= selected_element.element.name %>
-        </div>
-      <% end %>
-    </td>
-  </tr>
-
-  <tr id='tier2'>
-    <td class="tier bg-primary">Tier2</td>
-    <td class="tier_elements row m-0 table-primary" id='tier2_elements'>
-      <% tier_list.selected_elements.where(tier: 2).each do |selected_element| %>
-        <div class="m-1 bg-light element" id="<%= selected_element.element.id %>" data-tier="<%= selected_element.tier %>">
-          <%= selected_element.element.name %>
-        </div>
-      <% end %>
-   </td>
-  </tr>
-
-  <tr id='tier3'>
-    <td class="tier bg-warning">Tier3</td>
-    <td class="tier_elements row m-0 table-warning" id='tier3_elements'>
-      <% tier_list.selected_elements.where(tier: 3).each do |selected_element| %>
-        <div class="m-1 bg-light element" id="<%= selected_element.element.id %>" data-tier="<%= selected_element.tier %>">
-          <%= selected_element.element.name %>
-        </div>
-      <% end %>
-    </td>
-  </tr>
-
-  <tr id='tier4'>
-    <td class="tier bg-secondary">Tier4</td>
-    <td class="tier_elements row m-0 table-secondary" id='tier4_elements'>
-      <% tier_list.selected_elements.where(tier: 4).each do |selected_element| %>
-        <div class="m-1 bg-light element" id="<%= selected_element.element.id %>" data-tier="<%= selected_element.tier %>">
-          <%= selected_element.element.name %>
-        </div>
-      <% end %>
-    </td>
-  </tr>
-
+  <% tiers.each do |tier| %>
+    <tr id='tier<%= tier[:number] %>'>
+      <td class="<%= tier[:tier_class] %>"><%= tier[:text] %></td>
+      <td class="<%= tier[:elements_class] %>" id='tier<%= tier[:number] %>_elements'>
+        <% tier_list.selected_elements.where(tier: tier[:number]).each do |selected_element| %>
+          <div class="m-1 bg-light element" id="<%= selected_element.element.id %>" data-tier="<%= selected_element.tier %>">
+            <%= selected_element.element.name %>
+          </div>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
 </table>
