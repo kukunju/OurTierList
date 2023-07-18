@@ -1,50 +1,21 @@
 <!-- index.html.erb -->
 
 <div class="col-md-9 d-flex flex-column">
+  <div class="mx-auto my-3" style="width: 500px;">
+    <%= form_with url: search_path, local: true, method: :get do |f| %>
+      <%= f.text_field :word %>
+      <%= f.submit "検索", disable_with: "送信中", class: "btn btn-success py-0" %>
+    <% end %>
+  </div>
+
   <p>
-    <%= link_to '新しい順', tier_lists_path(new_order: "true") %>
-    |<%= link_to '古い順', tier_lists_path(old_order: "true") %>
-    |<%= link_to 'いいねが多い順', tier_lists_path(order_many_favorites: "true") %>
+    <%= link_to '新しい順', themes_path(new_order: "true") %>
+    |<%= link_to '古い順', themes_path(old_order: "true") %>
+    |<%= link_to 'TierListが多い順', themes_path(order_many_tier_list: "true") %>
   </p>
 
-  <% @themes.each do |theme| %>
-    <div class="card mb-3">
-      <div class="row no-gutters">
-        <div class="col-md-8">
-          <% tiers = [
-            {tier_class: 'tier bg-danger', elements_class: 'tier_elements row m-0 table-danger', text: 'Tier1', number: 1},
-            {tier_class: 'tier bg-primary', elements_class: 'tier_elements row m-0 table-primary', text: 'Tier2', number: 2},
-            {tier_class: 'tier bg-warning', elements_class: 'tier_elements row m-0 table-warning', text: 'Tier3', number: 3},
-            {tier_class: 'tier bg-secondary', elements_class: 'tier_elements row m-0 table-secondary', text: 'Tier4', number: 4},
-          ] %>
+  <%= render 'user/themes/themes_index', themes: @themes, averaged_tier_lists: @averaged_tier_lists %>
 
-          <table class="container">
-            <% tiers.each do |tier| %>
-              <tr id='tier<%= tier[:number] %>'>
-                <td class="<%= tier[:tier_class] %>"><%= tier[:text] %></td>
-                <td class="<%= tier[:elements_class] %>" id='tier<%= tier[:number] %>_elements'>
-                  
-                  <% @averaged_tier_lists[theme.id].selected_elements.each do |selected_element| %>
-                    <% if selected_element.tier == tier[:number] %>
-                      <div class="m-1 bg-light element" id="<%= selected_element.element.id %>" data-tier="<%= selected_element.tier %>">
-                        <%= selected_element.element.name %>
-                      </div>
-                    <% end %>
-                  <% end %>
-                  
-                </td>
-              </tr>
-            <% end %>
-          </table>
-        </div>
-        <div class="col-md-4">
-          <div class="card-body">
-            <h5 class="card-title"><%= theme.name %></h5>
-          </div>
-        </div>
-      </div>
-    </div>
-  <% end %>
 
 </div>
 

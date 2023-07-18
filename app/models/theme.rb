@@ -10,7 +10,9 @@ class Theme < ApplicationRecord
 
 
   accepts_nested_attributes_for :elements, allow_destroy: true, reject_if: :all_blank
-  
+
+
+#並べ替え
   scope :new_order, -> { order(created_at: :desc) }
   scope :old_order, -> { order(created_at: :asc) }
   scope :order_many_tier_list, -> {
@@ -19,7 +21,8 @@ class Theme < ApplicationRecord
       .order('COUNT(tier_lists.id) DESC')
   }
 
-def save_tag(sent_tags)
+#タグ保存
+  def save_tag(sent_tags)
 
     current_tags = self.tags.pluck(:name) unless self.tags.nil?
 
@@ -34,15 +37,17 @@ def save_tag(sent_tags)
     new_tags.each do |new|
       new_theme_tag = Tag.find_or_create_by(name: new)
       self.tags << new_theme_tag
-   end
+    end
 
-end
-
-def save_elements(element_list)
-  element_list.each do |element_name|
-    self.elements.create!(name: element_name)
   end
-end
 
+#要素保存
+  def save_elements(element_list)
+
+    element_list.each do |element_name|
+      self.elements.create!(name: element_name)
+    end
+
+  end
 
 end
