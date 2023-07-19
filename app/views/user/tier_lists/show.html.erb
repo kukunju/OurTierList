@@ -29,7 +29,7 @@
 
     <div class="row d-flex justify-content-start">
       <%= link_to "このテーマでTierListを作成", new_theme_tier_list_path(@tier_list.theme.id), class: "btn btn-info" %>
-        <% if @tier_list.user.id == current_user.id %>
+      <% if @tier_list.user.id == current_user.id %>
         <%= link_to "編集", edit_tier_list_path(@tier_list.id) ,class: "btn btn-info" %>
         <%= link_to "削除まだ", edit_tier_list_path(@tier_list.id) ,class: "btn btn-info" %>
       <% end %>

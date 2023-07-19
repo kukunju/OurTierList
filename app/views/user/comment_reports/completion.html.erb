@@ -1,2 +1,13 @@
-<h1>User::CommentReports#completion</h1>
-<p>Find me in app/views/user/comment_reports/completion.html.erb</p>
+<h1>コメント通報</h1>
+<div>
+  <%= form_with model: @comment_report, url: tier_list_comment_comment_reports_path, local: true do |f| %>
+  <%= f.hidden_field :comment_id, value: @comment_id %>
+
+  <div class="form-group">
+    通報理由
+    <%= f.select :reason, @report_reasons, include_blank: "選択してください" %>
+  </div>
+
+  <%= f.submit "通報する", class: "btn btn-primary" %>
+<% end %>
+</div>

@@ -15,7 +15,7 @@
             <tr id='tier<%= tier[:number] %>'>
               <td class="<%= tier[:tier_class] %>"><%= tier[:text] %></td>
               <td class="<%= tier[:elements_class] %>" id='tier<%= tier[:number] %>_elements'>
-                  <% @averaged_tier_lists[theme.id].selected_elements.each do |selected_element| %>
+                <% @averaged_tier_lists[theme.id].selected_elements.each do |selected_element| %>
                   <% if selected_element.tier == tier[:number] %>
                     <div class="m-1 bg-light element" id="<%= selected_element.element.id %>" data-tier="<%= selected_element.tier %>">
                       <%= selected_element.element.name %>
@@ -31,9 +31,14 @@
 
       <div class="col-md-4">
         <div class="card-body">
-          <h5 class="card-title"><%= theme.name %></h5>
-          <p class="card-text">投稿日時　<%= theme.created_at.strftime("%Y/%m/%d %H:%M:%S") %></p>
-          <p>タグ</p><br>
+
+          <h5 class="card-title">
+            <%= link_to tier_lists_path(theme_filtering: theme.id) do %>
+              <%= theme.name %>
+            <% end %>
+          </h5>
+
+          <p class="card-text">投稿日時　<%= theme.created_at.strftime("%Y/%m/%d %H:%M:%S") %><br>タグ</p>
           <div class="d-flex flex-row">
             <% theme.tags.each do |tag| %>
               <%= link_to search_path(range: "tag", word: tag.name ) do %>
@@ -41,6 +46,11 @@
               <% end %>
             <% end %>
           </div>
+          <div>
+            <%= link_to "NewTierList", new_theme_tier_list_path(theme.id), class: "btn btn-info" %>
+            <%= link_to "通報", completion_theme_theme_reports_path(theme.id), class: "btn btn-info" %>
+          </div>
+
         </div>
       </div>
 

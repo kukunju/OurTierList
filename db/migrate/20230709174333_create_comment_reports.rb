@@ -5,7 +5,7 @@ class CreateCommentReports < ActiveRecord::Migration[6.1]
       t.integer :user_id,    null: false
       t.integer :comment_id, null: false
       t.string  :reason,     null: false
-      t.boolean :is_solved,  null: false
+      t.boolean :is_solved,  null: false, default: false
 
       t.timestamps
     end

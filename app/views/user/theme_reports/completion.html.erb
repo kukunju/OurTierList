@@ -1,2 +1,13 @@
-<h1>User::ThemeReports#completion</h1>
-<p>Find me in app/views/user/theme_reports/completion.html.erb</p>
+<h1>テーマ通報</h1>
+<div>
+  <%= form_with model: @theme_report, url: theme_theme_reports_path, local: true do |f| %>
+  <%= f.hidden_field :theme_id, value: @theme_id %>
+
+  <div class="form-group">
+    通報理由
+    <%= f.select :reason, @report_reasons, include_blank: "選択してください" %>
+  </div>
+
+  <%= f.submit "通報する", class: "btn btn-primary" %>
+<% end %>
+</div>

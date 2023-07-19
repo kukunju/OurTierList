@@ -15,14 +15,13 @@ class User::SearchesController < ApplicationController
     end
 
     if @word.present?
+      
       if @range == "theme"
         @themes = @themes.where("name LIKE ?", "%#{@word}%")
       elsif @range == "tag"
         @themes = @themes.joins(:tags).where("tags.name LIKE ?", "%#{@word}%")
       end
-
-
-
+      
       @averaged_tier_lists = {}
 
       @themes.each do |theme|

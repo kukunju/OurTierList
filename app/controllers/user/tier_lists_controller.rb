@@ -1,4 +1,6 @@
 class User::TierListsController < ApplicationController
+  before_action :authenticate_user!, except: [:index]
+
   def new
     @theme = Theme.find(params[:theme_id])
     @tier_list = @theme.tier_lists.build
@@ -57,6 +59,8 @@ class User::TierListsController < ApplicationController
   end
 
   def index
+    @theme_filtaring = params[:theme_filtering]
+
     if params[:new_order]
       @tier_lists = TierList.new_order
     elsif params[:old_order]
@@ -67,11 +71,14 @@ class User::TierListsController < ApplicationController
       @tier_lists = TierList.all
     end
 
+    if @theme_filtaring.present?
+      @tier_lists = @tier_lists.where(theme_id: @theme_filtaring)
+    end
   end
 
   private
 
-def tier_list_params
-  params.require(:tier_list).permit(:comment)
-end
+  def tier_list_params
+    params.require(:tier_list).permit(:comment)
+  end
 end

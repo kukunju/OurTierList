@@ -56,7 +56,7 @@ ActiveRecord::Schema.define(version: 2023_07_18_101913) do
     t.integer "user_id", null: false
     t.integer "comment_id", null: false
     t.string "reason", null: false
-    t.boolean "is_solved", null: false
+    t.boolean "is_solved", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -103,7 +103,7 @@ ActiveRecord::Schema.define(version: 2023_07_18_101913) do
     t.integer "user_id", null: false
     t.integer "theme_id", null: false
     t.string "reason", null: false
-    t.boolean "is_solved", null: false
+    t.boolean "is_solved", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

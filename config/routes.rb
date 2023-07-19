@@ -34,10 +34,17 @@ Rails.application.routes.draw do
 
     resources :themes, only: [:new, :create, :index] do
       resources :tier_lists, only: [:new, :create]
+      resources :theme_reports, only: [:create] do
+        get 'completion', on: :collection
+      end
     end
 
     resources :tier_lists,except: [:new, :create] do
-      resources :comments, only: [:create, :update]
+      resources :comments, only: [:create, :update] do
+        resources :comment_reports, only: [:create] do
+          get 'completion', on: :collection
+        end
+      end
       resource :favorites, only: [:create, :destroy]
     end
 
@@ -49,19 +56,7 @@ Rails.application.routes.draw do
       end
       get 'favorite'
     end
-
-    resources :theme_reports, only: [:create] do
-      get 'completion', on: :collection
-    end
-
-    resources :comment_reports, only: [:create] do
-      get 'completion', on: :collection
-    end
-
   end
-
-
-
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
