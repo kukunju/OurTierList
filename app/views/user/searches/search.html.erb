@@ -2,10 +2,10 @@
   <div class="mx-auto my-3" style="width: 500px;">
     <%= form_with url: search_path, local: true, method: :get do |f| %>
       <%= f.text_field :word %>
+      <%= f.select :range, options_for_select([["テーマ","theme"],["タグ","tag"]]) %>
       <%= f.submit "検索", disable_with: "送信中", class: "btn btn-success py-0" %>
     <% end %>
   </div>
-
 
   <p>
     <%= link_to '新しい順', search_path(new_order: "true", word: @word) %>

@@ -1,6 +1,7 @@
 class User::SearchesController < ApplicationController
   def search
 
+    @range = params[:range]
     @word = params[:word]
 
     if params[:new_order]
@@ -14,8 +15,13 @@ class User::SearchesController < ApplicationController
     end
 
     if @word.present?
+      if @range == "theme"
+        @themes = @themes.where("name LIKE ?", "%#{@word}%")
+      elsif @range == "tag"
+        @themes = @themes.joins(:tags).where("tags.name LIKE ?", "%#{@word}%")
+      end
 
-      @themes = @themes.where("name LIKE ?", "%#{@word}%")
+
 
       @averaged_tier_lists = {}
 

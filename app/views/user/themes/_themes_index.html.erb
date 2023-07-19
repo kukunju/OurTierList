@@ -32,6 +32,15 @@
       <div class="col-md-4">
         <div class="card-body">
           <h5 class="card-title"><%= theme.name %></h5>
+          <p class="card-text">投稿日時　<%= theme.created_at.strftime("%Y/%m/%d %H:%M:%S") %></p>
+          <p>タグ</p><br>
+          <div class="d-flex flex-row">
+            <% theme.tags.each do |tag| %>
+              <%= link_to search_path(range: "tag", word: tag.name ) do %>
+                <i class="fa-solid fa-tags"></i><%= tag.name %>
+              <% end %>
+            <% end %>
+          </div>
         </div>
       </div>
 
