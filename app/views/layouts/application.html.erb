@@ -27,7 +27,7 @@
               <ul class="navbar-nav ml-auto">
 
                 <li class="nav-item ml-3" style="border-style:solid; border-width:2px;">
-                  <%= link_to "ユーザー", admin_root_path,class: 'nav-link', style: 'color: black;' %>
+                  <%= link_to "ユーザー", admin_users_path,class: 'nav-link', style: 'color: black;' %>
                 </li>
 
                 <li class="nav-item ml-3" style="border-style:solid; border-width:2px;">
@@ -133,11 +133,11 @@
   </body>
 
   <div class="text-success mx-auto "><%= flash[:notice] %></div>
-  <main class="py-3" style="border-top: 2px solid black; border-bottom: 2px solid black;">
+  <main class="main py-3" style="border-top: 2px solid black; border-bottom: 2px solid black;">
     <%= yield %>
   </main>
 
-  <footer style="height: 100px;">
+  <footer class="footer" style="height: 100px;">
     <a href="#page_top">上部へ</a>
   </footer>
 </html>
