@@ -1,2 +1,13 @@
-<h1>User::Homes#about</h1>
-<p>Find me in app/views/user/homes/about.html.erb</p>
+<div class="text-center">
+  <h1>About</h1>
+  <p>
+    <strong>OurTierList</strong>は自分の考えたTierを投稿することが出来るコミュニティサイトです！！<br>
+    攻略サイトやYouTubeでTierListを見たとき、「自分の考えとは全然違うな・・・」、「ほんとかなぁ」と思ったことありませんか？<br>
+    でも反論しようにも、コメントだけでは表現しずらい・・・<br>
+  </p>
+  <p><strong>OurTierList</strong>ならば、自分でテーマを決めてTierList作ったり、他の人が考えたテーマのTierListが簡単に作ることができ、共有することが出来ます。</p>
+  <p>さあ、あなたのTierListをみんなと共有しよう</p>
+  <p>↓↓↓新規登録してTierListを投稿しよう↓↓↓</p>
+  <%= link_to "新規登録", new_user_registration_path, class: 'btn btn-primary' %>
+  <%= link_to "ゲストログイン", new_user_registration_path, class: 'btn btn-primary' %>
+</div>

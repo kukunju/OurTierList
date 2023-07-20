@@ -39,7 +39,7 @@
           </h5>
 
           <p class="card-text">投稿日時　<%= theme.created_at.strftime("%Y/%m/%d %H:%M:%S") %><br>タグ</p>
-          <div class="d-flex flex-row">
+          <div class="d-flex flex-row flex-wrap">
             <% theme.tags.each do |tag| %>
               <%= link_to search_path(range: "tag", word: tag.name ) do %>
                 <i class="fa-solid fa-tags"></i><%= tag.name %>
