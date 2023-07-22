@@ -1,0 +1,16 @@
+ /* TierListEdit用css */
+.tier{
+  width: 100px;
+}
+
+.tier_elements {
+  min-height: 50px;
+  padding: 5px;
+}
+
+.element {
+  margin: 5px;
+  box-sizing: border-box;
+  width: fit-content;
+  text-align: center;
+}

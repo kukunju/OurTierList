@@ -35,3 +35,5 @@
 ## 使用素材
 - フリーイラスト素材として以下を使用
   - ICOOON MONO (https://icooon-mono.com/)
+- 背景画像として以下を使用
+  - BEIZ images(https://www.beiz.jp/)

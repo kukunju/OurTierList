@@ -6,11 +6,13 @@
 
  /* layouts css */
 .header{
-  background-color: #00bfff;
+  background-image: url("../images/haikei_header.jpg");
 }
 
-.main{
-  background-color: #f0ffff;
+.main {
+  background-image: url("../images/haikei_main.jpg");
+  background-size: cover;
+  background-repeat: repeat-y;
 }
 
 .footer{
@@ -21,19 +23,3 @@
   height: 50px;
 }
 
- /* TierListEdit用css */
-.tier{
-  width: 100px;
-}
-
-.tier_elements {
-  min-height: 50px;
-  padding: 5px;
-}
-
-.element {
-  margin: 5px;
-  box-sizing: border-box;
-  width: fit-content;
-  text-align: center;
-}
