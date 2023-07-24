@@ -7,6 +7,10 @@ class TierList < ApplicationRecord
   has_many :favorites
   has_many :selected_elements
 
+  #倫理削除したものを非表示
+  scope :active, -> { joins(:theme) .where(is_deleted: false, themes: { is_deleted: false }) }
+
+  #並べ替え
   scope :new_order, -> { order(created_at: :desc) }
   scope :old_order, -> { order(created_at: :asc) }
   scope :order_many_favorites, -> {

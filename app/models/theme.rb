@@ -12,6 +12,9 @@ class Theme < ApplicationRecord
   accepts_nested_attributes_for :elements, allow_destroy: true, reject_if: :all_blank
 
 
+#倫理削除したものを非表示
+  scope :active, -> { where(is_deleted: false) }
+
 #並べ替え
   scope :new_order, -> { order(created_at: :desc) }
   scope :old_order, -> { order(created_at: :asc) }

@@ -1,23 +1,23 @@
-<!-- index.html.erb -->
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 d-flex flex-column">
+      <div class="mx-auto my-3" style="width: 500px;">
+        <%= form_with url: search_path, local: true, method: :get do |f| %>
+          <%= f.text_field :word %>
+          <%= f.select :range, options_for_select([["テーマ","theme"],["タグ","tag"]]) %>
+          <%= f.submit "検索", disable_with: "送信中", class: "btn btn-success py-0" %>
+        <% end %>
+      </div>
 
-<div class="col-md-9 d-flex flex-column">
-  <div class="mx-auto my-3" style="width: 500px;">
-    <%= form_with url: search_path, local: true, method: :get do |f| %>
-      <%= f.text_field :word %>
-      <%= f.select :range, options_for_select([["テーマ","theme"],["タグ","tag"]]) %>
-      <%= f.submit "検索", disable_with: "送信中", class: "btn btn-success py-0" %>
-    <% end %>
+      <p>
+        <%= link_to '新しい順', themes_path(new_order: "true") %>
+        |<%= link_to '古い順', themes_path(old_order: "true") %>
+        |<%= link_to 'TierListが多い順', themes_path(order_many_tier_list: "true") %>
+      </p>
+
+      <%= render 'user/themes/themes_index', themes: @themes, averaged_tier_lists: @averaged_tier_lists %>
+
+
+    </div>
   </div>
-
-  <p>
-    <%= link_to '新しい順', themes_path(new_order: "true") %>
-    |<%= link_to '古い順', themes_path(old_order: "true") %>
-    |<%= link_to 'TierListが多い順', themes_path(order_many_tier_list: "true") %>
-  </p>
-
-  <%= render 'user/themes/themes_index', themes: @themes, averaged_tier_lists: @averaged_tier_lists %>
-
-
 </div>
-
-

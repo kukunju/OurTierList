@@ -30,10 +30,8 @@
       <%= f.text_area :comment %>
     </div>
 
-
-
+    <%= hidden_field_tag :update_mode, 'tier_list_edit' %>
     <%= f.submit "TierListを更新",data: { disable_with: '送信中' } %>
-
   <% end %>
 
 

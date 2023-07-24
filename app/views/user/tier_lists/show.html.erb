@@ -1,5 +1,5 @@
 <div class="container">
-  <table class="row-5 mx-auto border">
+  <table class="paper row-5 mx-auto border">
     <tr>
       <td class="pr-5">作者</td>
       <td><%= @tier_list.user.name %></td>
@@ -19,25 +19,23 @@
   </table>
 
 
-<div class="d-flex flex-column my-5">
-  <%= render "tier_list_show", tier_list: @tier_list %>
+  <div class="d-flex flex-column my-5">
+    <%= render "tier_list_show", tier_list: @tier_list %>
 
-  <div class="d-flex">
-    <div class="mr-auto" id="favorite-btn-<%= @tier_list.id %>" >
-      <%= render "user/favorites/favorite_btn", tier_list: @tier_list %>
-    </div>
+    <div class="d-flex">
+     <div class="mr-auto" id="favorite-btn-<%= @tier_list.id %>" >
+        <%= render "user/favorites/favorite_btn", tier_list: @tier_list %>
+      </div>
 
-    <div class="row d-flex justify-content-start">
-      <%= link_to "このテーマでTierListを作成", new_theme_tier_list_path(@tier_list.theme.id), class: "btn btn-info" %>
-      <% if @tier_list.user.id == current_user.id %>
-        <%= link_to "編集", edit_tier_list_path(@tier_list.id) ,class: "btn btn-info" %>
-        <%= link_to "削除まだ", edit_tier_list_path(@tier_list.id) ,class: "btn btn-info" %>
-      <% end %>
+      <div class="row d-flex justify-content-start">
+        <%= link_to "このテーマでTierListを作成", new_theme_tier_list_path(@tier_list.theme.id), class: "btn btn-warning ml-2" %>
+        <% if @tier_list.user.id == current_user.id %>
+          <%= link_to "編集", edit_tier_list_path(@tier_list.id) ,class: "btn btn-info ml-2" %>
+          <%= link_to "削除", tier_list_path(@tier_list.id, update_mode: "tier_list_invalidation"), method: :patch ,class: "btn btn-danger ml-2", data: { confirm: "本当に削除しますか？" } %>
+        <% end %>
+      </div>
     </div>
   </div>
-
-
-</div>
 
   <div>
     <h5 class="offset-1">コメント</h5>
@@ -47,7 +45,7 @@
 
   </div>
 
-  </div>
+</div>
 
 
 

@@ -12,7 +12,7 @@ class User::CommentsController < ApplicationController
       flash.now[:error] = "コメントの保存に失敗しました。"
     end
 
-    @comments = @tier_list.comments.where(is_deleted: false)
+    @comments = @tier_list.comments.active
   end
 
   def update
@@ -27,7 +27,7 @@ class User::CommentsController < ApplicationController
     end
 
 
-    @comments = @tier_list.comments.where(is_deleted: false)
+    @comments = @tier_list.comments.active
   end
 
   private

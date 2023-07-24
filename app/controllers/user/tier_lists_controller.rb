@@ -35,20 +35,29 @@ class User::TierListsController < ApplicationController
   end
 
   def update
-    params[:selected_elements] = JSON.parse(params[:selected_elements])
     @tier_list = TierList.find(params[:id])
 
-    if @tier_list.update(tier_list_params)
-      @tier_list.selected_elements.destroy_all
-      params[:selected_elements].each do |se|
-        @tier_list.selected_elements.create(
-          element_id: se[:element_id],
-          tier: se[:tier]
-        )
+    if params[:update_mode] == 'tier_list_edit'
+      params[:selected_elements] = JSON.parse(params[:selected_elements])
+
+      if @tier_list.update(tier_list_params)
+        @tier_list.selected_elements.destroy_all
+        params[:selected_elements].each do |se|
+          @tier_list.selected_elements.create(
+            element_id: se[:element_id],
+            tier: se[:tier]
+          )
+        end
+        redirect_to @tier_list, notice: 'TierListを保存しました.'
+      else
+        render :edit
       end
-      redirect_to @tier_list, notice: 'TierListを保存しました.'
+    elsif params[:update_mode] == 'tier_list_invalidation'
+      @tier_list.update(is_deleted: true)
+      flash[:success] = "TierListを削除しました。"
+      redirect_to user_path(current_user.id)
     else
-      render :edit
+      redirect_to user_path(current_user.id)
     end
   end
 
@@ -56,23 +65,27 @@ class User::TierListsController < ApplicationController
   def show
     @tier_list = TierList.find(params[:id])
     @comments = @tier_list.comments.where(is_deleted: false)
+
+    if @tier_list.is_deleted || @tier_list.theme.is_deleted
+      redirect_to tier_lists_path
+    end
   end
 
   def index
     @theme_filtaring = params[:theme_filtering]
 
     if params[:new_order]
-      @tier_lists = TierList.new_order
+      @tier_lists = TierList.new_order.active
     elsif params[:old_order]
-      @tier_lists = TierList.old_order
+      @tier_lists = TierList.old_order.active
     elsif params[:order_many_favorites]
-      @tier_lists = TierList.order_many_favorites
+      @tier_lists = TierList.order_many_favorites.active
     else
-      @tier_lists = TierList.all
+      @tier_lists = TierList.all.active
     end
 
     if @theme_filtaring.present?
-      @tier_lists = @tier_lists.where(theme_id: @theme_filtaring)
+      @tier_lists = @tier_lists.where(theme_id: @theme_filtaring).active
     end
   end
 

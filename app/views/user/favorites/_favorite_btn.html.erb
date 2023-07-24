@@ -1,9 +1,11 @@
-<% if tier_list.favorited_by?(current_user) %>
-  <%= link_to tier_list_favorites_path(tier_list), method: :delete, remote:true do %>
-    ♥<%= tier_list.favorites.count %>
+<h2>
+  <% if tier_list.favorited_by?(current_user) %>
+    <%= link_to tier_list_favorites_path(tier_list), method: :delete, remote:true do %>
+      <%= image_tag 'heart_on.png' %>  <%= tier_list.favorites.count %>
+    <% end %>
+    <% else %>
+    <%= link_to tier_list_favorites_path(tier_list), method: :post, remote:true do %>
+      <%= image_tag 'heart_off.png' %> <%= tier_list.favorites.count %>
+    <% end %>
   <% end %>
-  <% else %>
-  <%= link_to tier_list_favorites_path(tier_list), method: :post, remote:true do %>
-   ♡<%= tier_list.favorites.count %>
-  <% end %>
-<% end %>
+</h2>

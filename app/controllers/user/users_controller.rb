@@ -1,7 +1,15 @@
 class User::UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
-    @tier_lists = TierList.where(user_id: @user.id)
+    if params[:new_order]
+      @tier_lists = TierList.new_order.where(user_id: @user.id).active
+    elsif params[:old_order]
+      @tier_lists = TierList.old_order.where(user_id: @user.id).active
+    elsif params[:order_many_favorites]
+      @tier_lists = TierList.order_many_favorites.where(user_id: @user.id).active
+    else
+      @tier_lists = TierList.where(user_id: @user.id).active
+    end
   end
 
   def edit

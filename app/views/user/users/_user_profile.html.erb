@@ -1,4 +1,4 @@
-<div class="col-md-3 d-flex flex-column border px-0" style="height: fit-content;">
+<div class="paper col-md-3 d-flex flex-column border border-dark px-0" style="height: fit-content;">
 
     <div class="mx-auto py-3">
       <%= image_tag user.get_profile_image(100,100) %>
@@ -11,7 +11,7 @@
         <td><%= user.name %></td>
       </tr>
       <tr>
-        <td>投稿したTierList</td>
+        <td>お気に入りTierList</td>
         <td><%= user.tier_lists.count %></td>
       </tr>
     </tbody>
@@ -27,7 +27,7 @@
 
   <div class="m-2">
     <a class="btn btn-outline-primary mx-auto col" href="<%= user_favorite_path(user.id) %>" role="button">
-      いいねしたTierList
+      お気に入りTierList
     </a>
   </div>
 
