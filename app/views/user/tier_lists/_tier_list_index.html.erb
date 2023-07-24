@@ -15,9 +15,9 @@
         <div class="col-md-4">
           <div class="card-body">
             <h5 class="card-title"><%= tier_list.theme.name %></h5>
+            <%= link_to "詳細", tier_list_path(tier_list.id),class: "btn btn-outline-secondary" %>
             <p class="card-text"><%= tier_list.comment %></p>
             <%= link_to user_path(tier_list.user.id) do %><%= tier_list.user.name %><% end %>
-            <%= link_to "詳細", tier_list_path(tier_list.id),class: "btn btn-outline-secondary" %>
             <% if user_signed_in? %>
               <div id="favorite-btn-<%= tier_list.id %>" >
                 <%= render "user/favorites/favorite_btn", tier_list: tier_list %>

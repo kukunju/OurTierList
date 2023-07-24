@@ -22,6 +22,8 @@ class User::UsersController < ApplicationController
   end
 
   def favorite
+    @user = User.find(params[:user_id])
+    @tier_lists = @user.favorites.includes(:tier_list).map(&:tier_list)
   end
 
   def leave

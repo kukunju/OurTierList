@@ -26,23 +26,7 @@
             <div>
               <ul class="navbar-nav ml-auto">
 
-                <li class="nav-item ml-3" style="border-style:solid; border-width:2px;">
-                  <%= link_to "ユーザー", admin_users_path,class: 'nav-link', style: 'color: black;' %>
-                </li>
-
-                <li class="nav-item ml-3" style="border-style:solid; border-width:2px;">
-                  <%= link_to "テーマ", admin_themes_path,class: 'nav-link', style: 'color: black;' %>
-                </li>
-
-                <li class="nav-item ml-3" style="border-style:solid; border-width:2px;">
-                  <%= link_to "TierList", admin_tier_lists_path,class: 'nav-link', style: 'color: black;' %>
-                </li>
-
-                <li class="nav-item ml-3" style="border-style:solid; border-width:2px;">
-                  <%= link_to "通報", admin_theme_reports_path,class: 'nav-link', style: 'color: black;' %>
-                </li>
-
-                <li class="nav-item ml-3" style="border-style:solid; border-width:2px;">
+                <li class="paper nav-item ml-3">
                   <%= link_to "ログアウト", destroy_admin_session_path, method: :delete,class: 'nav-link', style: 'color: black;' %>
                 </li>
 
@@ -62,30 +46,31 @@
               <%= image_tag 'OurTierListLOGO.png', class:"logo" %>
             </a>
 
-            <div>
-              <%= link_to "NewTierList", new_theme_path, class: 'nav-link', style: 'color: black;' %>
+            <div class="paper d-flex align-items-center">
+              <%= image_tag current_user.get_profile_image(50,50) %>
+              <p>ユーザー名　<%= current_user.name %></p>
             </div>
 
             <div>
-              <p>ログイン中　<%= current_user.name %></p>
+              <%= link_to "NewTierList", new_theme_path, class: 'nav-link btn btn-warning', style: 'color: black;' %>
             </div>
 
             <div>
               <ul class="navbar-nav ml-auto">
 
-                <li class="nav-item ml-3" style="border-style:solid; border-width:2px;">
+                <li class="paper nav-item ml-3">
                   <%= link_to "マイページ", user_path(current_user), class: 'nav-link', style: 'color: black;' %>
                 </li>
 
-                <li class="nav-item ml-3" style="border-style:solid; border-width:2px;">
+                <li class="paper nav-item ml-3">
                   <%= link_to "TierList", tier_lists_path, class: 'nav-link', style: 'color: black;'%>
                 </li>
 
-                <li class="nav-item ml-3" style="border-style:solid; border-width:2px;">
+                <li class="paper nav-item ml-3">
                   <%= link_to "テーマ一覧", themes_path, class: 'nav-link', style: 'color: black;'%>
                 </li>
 
-                <li class="nav-item ml-3" style="border-style:solid; border-width:2px;">
+                <li class="paper nav-item ml-3">
                   <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link', style: 'color: black;' %>
                 </li>
 
@@ -108,19 +93,19 @@
             <div>
               <ul class="navbar-nav ml-auto">
 
-                <li class="nav-item ml-3" style="border-style:solid; border-width:2px;">
+                <li class="paper nav-item ml-3">
                   <%= link_to "About", about_path, class: 'nav-link', style: 'color: black;'%>
                 </li>
 
-                <li class="nav-item ml-3" style="border-style:solid; border-width:2px;">
+                <li class="paper nav-item ml-3">
                   <%= link_to "TierList", tier_lists_path, class: 'nav-link', style: 'color: black;'%>
                 </li>
 
-                <li class="nav-item ml-3" style="border-style:solid; border-width:2px;">
+                <li class="paper nav-item ml-3">
                   <%= link_to "新規登録", new_user_registration_path, class: 'nav-link', style: 'color: black;'%>
                 </li>
 
-                <li class="nav-item ml-3" style="border-style:solid; border-width:2px;">
+                <li class="paper nav-item ml-3">
                   <%= link_to "ログイン", new_user_session_path, class: 'nav-link', style: 'color: black;'%>
                 </li>
 
@@ -132,8 +117,11 @@
     <% end %>
   </body>
 
-  <div class="text-success mx-auto "><%= flash[:notice] %></div>
-  <main class="main py-3" style="border-top: 2px solid black; border-bottom: 2px solid black;">
+
+  <% flash.each do |key, value| %>
+    <%= content_tag(:div, value, class: "#{key}") %>
+  <% end %>
+  <main class="main py-3">
     <%= yield %>
   </main>
 
