@@ -2,13 +2,13 @@ class User::UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     if params[:new_order]
-      @tier_lists = TierList.new_order.where(user_id: @user.id).active
+      @tier_lists = TierList.new_order.where(user_id: @user.id).active.page(params[:page])
     elsif params[:old_order]
-      @tier_lists = TierList.old_order.where(user_id: @user.id).active
+      @tier_lists = TierList.old_order.where(user_id: @user.id).active.page(params[:page])
     elsif params[:order_many_favorites]
-      @tier_lists = TierList.order_many_favorites.where(user_id: @user.id).active
+      @tier_lists = TierList.order_many_favorites.where(user_id: @user.id).active.page(params[:page])
     else
-      @tier_lists = TierList.where(user_id: @user.id).active
+      @tier_lists = TierList.where(user_id: @user.id).active.page(params[:page])
     end
   end
 

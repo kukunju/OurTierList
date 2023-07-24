@@ -21,13 +21,13 @@ class User::ThemesController < ApplicationController
 
   def index
     if params[:new_order]
-      @themes = Theme.new_order.active
+      @themes = Theme.new_order.active.page(params[:page])
     elsif params[:old_order]
-      @themes = Theme.old_order.active
+      @themes = Theme.old_order.active.page(params[:page])
     elsif params[:order_many_tier_list]
-      @themes = Theme.order_many_tier_list.active
+      @themes = Theme.order_many_tier_list.active.page(params[:page])
     else
-      @themes = Theme.all.active
+      @themes = Theme.all.active.page(params[:page])
     end
 
     @averaged_tier_lists = {}

@@ -75,17 +75,17 @@ class User::TierListsController < ApplicationController
     @theme_filtaring = params[:theme_filtering]
 
     if params[:new_order]
-      @tier_lists = TierList.new_order.active
+      @tier_lists = TierList.new_order.active.page(params[:page])
     elsif params[:old_order]
-      @tier_lists = TierList.old_order.active
+      @tier_lists = TierList.old_order.active.page(params[:page])
     elsif params[:order_many_favorites]
-      @tier_lists = TierList.order_many_favorites.active
+      @tier_lists = TierList.order_many_favorites.active.page(params[:page])
     else
-      @tier_lists = TierList.all.active
+      @tier_lists = TierList.all.active.page(params[:page])
     end
 
     if @theme_filtaring.present?
-      @tier_lists = @tier_lists.where(theme_id: @theme_filtaring).active
+      @tier_lists = @tier_lists.where(theme_id: @theme_filtaring).active.page(params[:page])
     end
   end
 
