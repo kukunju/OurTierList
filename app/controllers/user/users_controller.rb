@@ -1,4 +1,6 @@
 class User::UsersController < ApplicationController
+  before_action :ensure_guest_user, only: [:edit]
+
   def show
     @user = User.find(params[:id])
     if params[:new_order]
@@ -31,7 +33,16 @@ class User::UsersController < ApplicationController
 
   def favorite
     @user = User.find(params[:user_id])
-    @tier_lists = @user.favorites.includes(:tier_list).map(&:tier_list)
+    tier_list_ids = @user.favorites.pluck(:tier_list_id)
+    if params[:new_order]
+      @tier_lists = TierList.new_order.where(id: tier_list_ids).active.page(params[:page])
+    elsif params[:old_order]
+      @tier_lists = TierList.old_order.where(id: tier_list_ids).active.page(params[:page])
+    elsif params[:order_many_favorites]
+      @tier_lists = TierList.order_many_favorites.where(id: tier_list_ids).active.page(params[:page])
+    else
+      @tier_lists = TierList.where(id: tier_list_ids).active.page(params[:page])
+    end
   end
 
   def leave
@@ -48,6 +59,13 @@ class User::UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :email, :profile_image)
+  end
+
+  def ensure_guest_user
+    @user = User.find(params[:id])
+    if @user.name == "guestuser"
+      redirect_to user_path(current_user) , notice: "ゲストユーザーはプロフィール編集画面へ遷移できません。"
+    end
   end
 
 end
