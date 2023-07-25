@@ -32,7 +32,7 @@ ja:
         is_solved: 解決した
       element:
         theme_id: テーマID
-        name: 名前
+        name: 要素名
       favorite:
         user_id: ユーザーID
         tier_list_id: ティアリストID
@@ -41,11 +41,13 @@ ja:
         element_id: 要素ID
         tier: ティア
       tag:
-        name: 名前
+        name: タグ名
       theme:
         user_id: ユーザーID
-        name: 名前
+        name: テーマ名
         is_deleted: 削除された
+        tag_names: タグ
+        element_names: 要素
       theme_report:
         user_id: ユーザーID
         theme_id: テーマID
@@ -62,13 +64,14 @@ ja:
       user:
         email: メールアドレス
         encrypted_password: 暗号化されたパスワード
-        name: 名前
+        name: ユーザー名
         is_deleted: 削除された
         reset_password_token: パスワードリセットトークン
         reset_password_sent_at: パスワードリセット送信時間
         remember_created_at: 作成日時
         password: パスワード
         password_confirmation: 確認のためパスワードを再入力してください。
+
 
 
 

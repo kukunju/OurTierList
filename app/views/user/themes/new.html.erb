@@ -3,14 +3,16 @@
 <div>
 
 <%= form_with model: @theme, local: true do |f| %>
+　<%= render "user/error_messages", resource: @theme %>
+
   <%= f.label :name, 'テーマ' %>
   <%= f.text_field :name %>
 
   <%= f.label :element_names, '要素' %>
-  <%= f.text_field :element_names, placeholder: '要素1,要素2,要素3...' %>
+  <%= f.text_field :element_names, placeholder: '要素1、要素2、要素3...' %>
 
   <%= f.label :tag_names, 'タグ' %>
-  <%= f.text_field :tag_names, placeholder: 'タグ1,タグ2,タグ3...' %>
+  <%= f.text_field :tag_names, placeholder: 'タグ1、タグ2、タグ3...' %>
 
   <%= f.submit 'このテーマでTierを作る' %>
 <% end %>

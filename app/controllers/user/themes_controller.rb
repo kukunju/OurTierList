@@ -7,15 +7,21 @@ class User::ThemesController < ApplicationController
   def create
     @theme = Theme.new(theme_params)
     @theme.user_id = current_user.id
-    tag_list = params[:theme][:tag_names].split(',')
-    element_list = params[:theme][:element_names].split(',')
+    tag_list = params[:theme][:tag_names].split('、')
+    element_list = params[:theme][:element_names].split('、')
 
-    if @theme.save
+    @theme.valid?
+    @theme.errors.add(:tag_names, 'を入力してください') if tag_list.empty?
+    @theme.errors.add(:element_names, 'を入力してください') if element_list.empty?
+
+
+    if @theme.errors.any?
+      render :new
+    else
+      @theme.save
       @theme.save_tag(tag_list)
       @theme.save_elements(element_list)
       redirect_to new_theme_tier_list_path(@theme.id), notice: 'テーマが正常に作成されました'
-    else
-      render :new
     end
   end
 

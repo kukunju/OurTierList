@@ -1,4 +1,5 @@
 class Theme < ApplicationRecord
+  attr_accessor :tag_names, :element_names
 
   belongs_to :user
 
@@ -8,9 +9,9 @@ class Theme < ApplicationRecord
   has_many :theme_reports
   has_many :tags, through: :theme_tags
 
+  validates :name, presence: true
 
   accepts_nested_attributes_for :elements, allow_destroy: true, reject_if: :all_blank
-
 
 #倫理削除したものを非表示
   scope :active, -> { where(is_deleted: false) }

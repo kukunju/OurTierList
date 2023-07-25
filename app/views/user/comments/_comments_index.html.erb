@@ -20,8 +20,8 @@
           <td style="width: 15%;">
             <% if comment.user == current_user %>
               <%= link_to "削除", tier_list_comment_path(comment.tier_list, comment), method: :patch, remote: true, class: "btn btn-danger", role: "button", data: { confirm: "本当に削除しますか？" } %>
-              <%= link_to "通報", completion_tier_list_comment_comment_reports_path(comment.tier_list.id, comment.id), class: "btn btn-info" %>
             <% end %>
+            <%= link_to "通報", completion_tier_list_comment_comment_reports_path(comment.tier_list.id, comment.id), class: "btn btn-info" %>
           </td>
         </tr>
       <% end %>

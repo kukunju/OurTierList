@@ -58,4 +58,6 @@
     </div>
   </div>
 <% end %>
-<%= paginate themes %>
+<% if themes.any? %>
+    <%= paginate themes %>
+<% end %>

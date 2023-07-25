@@ -15,16 +15,21 @@ class User::TierListsController < ApplicationController
     @tier_list.user = current_user
 
 
-    if @tier_list.save
-      params[:selected_elements].each do |se|
-        @tier_list.selected_elements.create(
-          element_id: se[:element_id],
-          tier: se[:tier]
-        )
-      end
-      redirect_to @tier_list, notice: 'TierListを保存しました.'
-    else
+    if params[:selected_elements].any? { |element| element['tier'].nil? }
+      @tier_list.errors.add(:base, "すべての要素をTierListに追加してください")
       render :new
+    else
+      if @tier_list.save
+        params[:selected_elements].each do |se|
+          @tier_list.selected_elements.create(
+            element_id: se[:element_id],
+            tier: se[:tier]
+          )
+        end
+        redirect_to @tier_list, notice: 'TierListを保存しました.'
+      else
+        render :new
+      end
     end
   end
 
