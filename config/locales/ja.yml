@@ -67,6 +67,10 @@ ja:
         reset_password_token: パスワードリセットトークン
         reset_password_sent_at: パスワードリセット送信時間
         remember_created_at: 作成日時
+        password: パスワード
+        password_confirmation: 確認のためパスワードを再入力してください。
+
+
 
     errors:
       messages:
