@@ -1,7 +1,7 @@
 <div class="top_body text-center">
   <p>OurTierListへようこそ！！<br>自分だけのTierListをシェアしよう！！！</p>
-  <p>↓↓↓新規登録してTierListを投稿しよう↓↓↓</p>
   <% unless user_signed_in? %>
+    <p>↓↓↓新規登録してTierListを投稿しよう↓↓↓</p>
     <%= link_to "新規登録", new_user_registration_path, class: 'btn btn-primary' %>
     <%= link_to "ゲストログイン", users_guest_sign_in_path, class: 'btn btn-primary', method: :post %>
     <%= link_to "管理者用ログイン", new_admin_session_path, class: 'btn btn-primary' %>
