@@ -23,6 +23,10 @@
 ​
 
 ## 設計書
+- ER図　https://drive.google.com/file/d/1mcrtD34gyBrN_2OFkv_HFwsC54Klm_6D/view?usp=sharing
+- アプリケーション詳細設計　https://docs.google.com/spreadsheets/d/1wjlbe-Wu1E-rTvzjAyEKRWSnbToplG2iS0dEb0gBr7Y/edit?usp=sharing
+- テーブル定義書　https://docs.google.com/spreadsheets/d/1mKeLaFFd65xXR-prPngvqV9yBpMPfBiyjS7q7Tex3yM/edit?usp=sharing
+- 画面遷移図　https://drive.google.com/file/d/15vEeXgFDUSgjO6XfDQurzfmCx_xQGD1w/view?usp=sharing
 
 ​
 ## 開発環境
