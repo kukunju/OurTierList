@@ -9,6 +9,12 @@ class ApplicationController < ActionController::Base
 
   protected
 
+  def only_current_user(user)
+    unless user.id == current_user.id
+      redirect_to user_path(current_user.id)
+    end
+  end
+
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
   end

@@ -37,10 +37,12 @@ class User::TierListsController < ApplicationController
 
   def edit
     @tier_list = TierList.find(params[:id])
+    only_current_user(@tier_list.user)
   end
 
   def update
     @tier_list = TierList.find(params[:id])
+    only_current_user(@tier_list.user)
 
     if params[:update_mode] == 'tier_list_edit'
       params[:selected_elements] = JSON.parse(params[:selected_elements])
