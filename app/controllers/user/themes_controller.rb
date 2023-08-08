@@ -7,8 +7,8 @@ class User::ThemesController < ApplicationController
   def create
     @theme = Theme.new(theme_params)
     @theme.user_id = current_user.id
-    tag_list = params[:theme][:tag_names].split('、')
-    element_list = params[:theme][:element_names].split('、')
+    tag_list = params[:theme][:tag_names].split('、').uniq
+    element_list = params[:theme][:element_names].split('、').uniq
 
     @theme.valid?
     @theme.errors.add(:tag_names, 'を入力してください') if tag_list.empty?
