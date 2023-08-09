@@ -1,21 +1,36 @@
 <h1>新規テーマ作成</h1>
 
-<div>
+<div class="container">
+  <div>
+    <%= form_with model: @theme, local: true do |f| %>
+      <div class="my-3">
+        <%= render "user/error_messages", resource: @theme %>
 
-<%= form_with model: @theme, local: true do |f| %>
-　<%= render "user/error_messages", resource: @theme %>
-
-  <%= f.label :name, 'テーマ' %>
-  <%= f.text_field :name %>
-
-  <%= f.label :element_names, '要素' %>
-  <%= f.text_field :element_names, placeholder: '要素1、要素2、要素3...' %>
-
-  <%= f.label :tag_names, 'タグ' %>
-  <%= f.text_field :tag_names, placeholder: 'タグ1、タグ2、タグ3...' %>
-
-  <%= f.submit 'このテーマでTierを作る' %>
-<% end %>
+        <%= f.label :name, 'テーマ' %>
+        <%= f.text_field :name %>
+      </div>
 
 
+      <div class="my-3">
+        <%= f.fields_for :elements do |element_form| %>
+          <%= render 'element_fields', f: element_form %>
+        <% end %>
+        <div>
+          <%= link_to_add_association '要素を追加', f, :elements, class: 'btn btn-success btn-sm' %>
+        </div>
+      </div>
+
+      <div class="my-3">
+        <%= f.fields_for :tags do |tag_form| %>
+          <%= render 'tag_fields', f: tag_form %>
+        <% end %>
+        <div>
+          <%= link_to_add_association 'タグを追加', f, :tags, class: 'btn btn-success btn-sm' %>
+        </div>
+      </div>
+
+      <%= f.submit 'このテーマでTierを作る' %>
+
+    <% end %>
+  </div>
 </div>

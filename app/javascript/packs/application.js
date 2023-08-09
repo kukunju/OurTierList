@@ -13,9 +13,11 @@ import 'jquery';
 import 'jquery-ui/ui/widgets/draggable';
 import 'jquery-ui/ui/widgets/droppable';
 
+import "@nathanvda/cocoon";
 
 import "popper.js";
 import "bootstrap";
+
 import "../stylesheets/application";
 import "../stylesheets/tier_list";
 

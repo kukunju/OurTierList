@@ -63,6 +63,8 @@ gem 'rails_admin', '~> 3.0'
 
 gem 'cancancan'
 
+gem 'cocoon'
+
 gem 'dotenv-rails'
 group :production do
   gem 'mysql2'

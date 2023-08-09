@@ -2,28 +2,37 @@ class User::ThemesController < ApplicationController
   def new
     @theme = Theme.new
     @theme.elements.build
+    @theme.tags.build
   end
 
   def create
     @theme = Theme.new(theme_params)
     @theme.user_id = current_user.id
-    tag_list = params[:theme][:tag_names].split('、').uniq
-    element_list = params[:theme][:element_names].split('、').uniq
+
+    if theme_params[:tags_attributes] != nil
+      tag_names = theme_params[:tags_attributes].values.map { |tag| tag[:name] }.reject(&:blank?).uniq
+    else
+      tag_names = []
+    end
+
+    element_names = @theme.elements.map(&:name).uniq
 
     @theme.valid?
-    @theme.errors.add(:tag_names, 'を入力してください') if tag_list.empty?
-    @theme.errors.add(:element_names, 'を入力してください') if element_list.empty?
-
 
     if @theme.errors.any?
       render :new
     else
-      @theme.save
-      @theme.save_tag(tag_list)
-      @theme.save_elements(element_list)
-      redirect_to new_theme_tier_list_path(@theme.id), notice: 'テーマが正常に作成されました'
+      @theme.tags = tag_names.map { |name| Tag.find_or_create_by(name: name) }
+      @theme.elements = element_names.map { |name| Element.new(name: name) }
+      if @theme.save
+        redirect_to new_theme_tier_list_path(@theme.id), notice: 'テーマが正常に作成されました'
+      else
+        Rails.logger.info @theme.errors.full_messages
+        render :new
+      end
     end
   end
+
 
   def index
     if params[:new_order]
@@ -50,6 +59,8 @@ class User::ThemesController < ApplicationController
 
 
   def theme_params
-    params.require(:theme).permit(:name)
+    params.require(:theme).permit(
+      :name, elements_attributes: [:id, :name, :_destroy], tags_attributes: [:id, :name, :_destroy]
+    )
   end
 end
